@@ -15,6 +15,7 @@ fun KonanTarget.binaryFormat() = when (family) {
     Family.WATCHOS -> BinaryFormat.MACH_O
     Family.IOS -> BinaryFormat.MACH_O
     Family.TVOS -> BinaryFormat.MACH_O
+    Family.VISIONOS -> BinaryFormat.MACH_O
     Family.OSX -> BinaryFormat.MACH_O
     Family.ANDROID -> BinaryFormat.ELF
     Family.LINUX -> BinaryFormat.ELF
@@ -47,7 +48,7 @@ fun KonanTarget.supportsWinAPIUnwind(): Boolean = this is KonanTarget.MINGW_X64
 
 fun KonanTarget.supportsObjcInterop(): Boolean = family.isAppleFamily
 fun KonanTarget.hasFoundationFramework(): Boolean = family.isAppleFamily
-fun KonanTarget.hasUIKitFramework(): Boolean = family == Family.IOS || family == Family.TVOS
+fun KonanTarget.hasUIKitFramework(): Boolean = family == Family.IOS || family == Family.TVOS || family == Family.VISIONOS
 fun KonanTarget.supports64BitMulOverflow(): Boolean = when (this) {
     is KonanTarget.LINUX_ARM32_HFP -> false
     is KonanTarget.ANDROID_ARM32 -> false
